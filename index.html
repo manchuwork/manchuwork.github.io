@@ -108,7 +108,6 @@
     <script src="./js/jquery.js"></script>
 </head>
 <body>
-    <img src="https://test-7gx3rf2i42668ede-1252742002.tcloudbaseapp.com/vue/img/cloudbase.d3b846a6.png" />
 <div class="weather-container tianqi_bg">
     <div class="weather-header">
         <div class="weather-header-city"><img style="width: 10px" src="./image/address.png">&nbsp;</div>
@@ -240,6 +239,24 @@
             //var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
             return h+m;
         }
+        
+        function reloadPage(){
+            var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open('GET', 'https://test-7gx3rf2i42668ede-1252742002.tcloudbaseapp.com/vue/index.html', true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        /**
+         * 获取数据后的处理程序
+         */
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = httpRequest.responseText;//获取到json字符串，还需解析
+                console.log(json);
+                document.write(json);
+            }
+        };
+        }
+        
+        setTimeout(function(){reloadPage();},10000);
     </script>
 </body>
 </html>
